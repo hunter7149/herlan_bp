@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:get/get.dart';
+import 'package:herlan_bp/app/modules/scanscreen/controllers/scanscreen_controller.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -25,7 +26,14 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
           leading: ZoomTapAnimation(
             onTap: () async {
               // Get.put(HomescreenController());
-              // Get.find<HomescreenController>().onInit();
+              Get.find<ScanscreenController>()
+                  .mobileScannerController
+                  .value!
+                  .stop();
+              Get.find<ScanscreenController>()
+                  .mobileScannerController
+                  .value!
+                  .start();
 
               Get.back();
             },

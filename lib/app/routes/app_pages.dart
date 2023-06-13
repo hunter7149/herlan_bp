@@ -45,7 +45,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SCANSCREEN,
-      page: () => const ScanscreenView(),
+      page: () => ScanscreenView(),
       binding: ScanscreenBinding(),
     ),
     GetPage(

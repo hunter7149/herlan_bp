@@ -10,7 +10,7 @@ import '../../../data/qroverlay2.dart';
 import '../controllers/scanscreen_controller.dart';
 
 class ScanscreenView extends GetView<ScanscreenController> {
-  const ScanscreenView({Key? key}) : super(key: key);
+  ScanscreenView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,23 +39,34 @@ class ScanscreenView extends GetView<ScanscreenController> {
                 top: 0,
                 left: 0,
                 right: 0,
-                bottom: 60,
+                bottom: 70,
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       Stack(
                         children: [
                           Container(
-                            height: 400,
-                            // width: 250,
-                            child: MobileScanner(
-                              controller: controller.scannerController(),
-                              onDetect: (capture) {
-                                print(capture.barcodes);
-                                controller.showDialogue(capture);
-                              },
-                            ),
-                          ),
+                              height: 400,
+                              // width: 250,
+                              child: Obx(() {
+                                if (controller.mobileScannerController.value !=
+                                    null) {
+                                  return MobileScanner(
+                                    controller: controller
+                                        .mobileScannerController.value!,
+                                    onDetect: (capture) {
+                                      print(capture.barcodes);
+                                      controller.showDialogue(capture);
+                                    },
+                                  );
+                                } else {
+                                  controller.initializeScannerController();
+                                  return Container(
+                                    color: Colors.red,
+                                    height: 200,
+                                  );
+                                }
+                              })),
                           Container(
                               height: 400,
                               child: Obx(() => controller.isValid.value
@@ -110,11 +121,11 @@ class ScanscreenView extends GetView<ScanscreenController> {
                                 ),
                               )
                             : Container(
-                                height: 300,
+                                height: 280,
                                 margin: EdgeInsets.symmetric(horizontal: 24),
                                 decoration: BoxDecoration(
                                     border: Border.all(
-                                        width: 1, color: AppColors.modernGreen),
+                                        width: 1, color: AppColors.herlanMain),
                                     borderRadius: BorderRadius.circular(0)),
                                 // color: Colors.green,
                                 child: Column(
@@ -124,7 +135,7 @@ class ScanscreenView extends GetView<ScanscreenController> {
                                           EdgeInsets.symmetric(horizontal: 24),
                                       height: 40,
                                       // width: double.maxFinite,
-                                      color: AppColors.modernGreen,
+                                      color: AppColors.herlanMain,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -137,7 +148,7 @@ class ScanscreenView extends GetView<ScanscreenController> {
                                                 fontSize: 16),
                                           ),
                                           Text(
-                                            "TIME",
+                                            "QUANTITY",
                                             style: TextStyle(
                                                 color: Colors.white,
                                                 fontWeight: FontWeight.w500,
@@ -172,25 +183,22 @@ class ScanscreenView extends GetView<ScanscreenController> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                              fontSize: 16),
+                                                              fontSize: 20),
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          "${controller.scanHistory[index]['time']}",
-                                                          style: TextStyle(
-                                                              color: Colors.grey
-                                                                  .shade600,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize: 16),
-                                                        ),
+                                                      Text(
+                                                        "${controller.scanHistory[index]['quantity']}",
+                                                        style: TextStyle(
+                                                            color: Colors
+                                                                .grey.shade600,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize: 20),
                                                       ),
                                                     ],
                                                   ),
                                                   SizedBox(
-                                                    height: 10,
+                                                    height: 20,
                                                   ),
                                                 ],
                                               ),

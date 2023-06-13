@@ -5,17 +5,33 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../../routes/app_pages.dart';
 
 class ScanscreenController extends GetxController {
-  MobileScannerController? _mobileScannerController;
+  Rx<MobileScannerController?> mobileScannerController =
+      Rx<MobileScannerController?>(null);
 
-  scannerController() {
-    if (_mobileScannerController != null) {
-      return _mobileScannerController!;
-    } else {
-      _mobileScannerController = MobileScannerController(
+  MobileScannerController? get scannerController =>
+      mobileScannerController.value;
+
+  initializeScannerController() {
+    if (mobileScannerController.value == null) {
+      mobileScannerController.value = MobileScannerController(
         detectionSpeed: DetectionSpeed.noDuplicates,
+        autoStart: true,
         returnImage: true,
       );
-      return _mobileScannerController!;
+      mobileScannerController.value!.start();
+      update();
+      return mobileScannerController.value;
+    } else {
+      mobileScannerController.value = null;
+      update();
+      mobileScannerController.value = MobileScannerController(
+        detectionSpeed: DetectionSpeed.noDuplicates,
+        autoStart: true,
+        returnImage: true,
+      );
+      mobileScannerController.value!.start();
+      update();
+      return mobileScannerController.value;
     }
   }
 
@@ -28,29 +44,35 @@ class ScanscreenController extends GetxController {
     bool codeExists = scanHistory.any((entry) => entry['code'] == code);
 
     if (!codeExists) {
-      scanHistory.add({
-        "code": code,
-        "time": DateFormat('MM/dd/yyyy hh:mm:ss a')
-            .format(DateTime.now())
-            .toString(),
-      });
+      scanHistory.add({"code": code, "quantity": 1});
+    } else {
+      // Find the existing entry with the matching code
+      var existingEntry =
+          scanHistory.firstWhere((entry) => entry['code'] == code);
+      // Update the quantity by incrementing it by 1
+      existingEntry['quantity']++;
     }
     scanHistory.refresh();
   }
 
   stopCamera() async {
-    await _mobileScannerController!.stop();
-    _mobileScannerController?.dispose();
+    await mobileScannerController.value!.stop();
+    mobileScannerController.value!.dispose();
   }
 
-  nextPage() {
-    stopCamera();
+  nextPage() async {
+    await stopCamera();
+    Get.put<ScanscreenController>(ScanscreenController());
     Get.toNamed(Routes.CUSTOMERSCREEN);
+    // Get.toNamed(Routes.CUSTOMERSCREEN)?.then((_) {
+    //   initializeScannerController();
+    // });
   }
 
   @override
   void onInit() {
     super.onInit();
+    initializeScannerController();
   }
 
   @override
@@ -59,7 +81,9 @@ class ScanscreenController extends GetxController {
   }
 
   @override
-  void onClose() {
+  Future<void> onClose() async {
+    await mobileScannerController.value!.stop();
+    mobileScannerController.value!.dispose();
     super.onClose();
   }
 }
