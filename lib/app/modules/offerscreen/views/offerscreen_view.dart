@@ -122,7 +122,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                         "Coupon details",
                                         style: TextStyle(
                                             fontSize: 28,
-                                            color: AppColors.modernGreen,
+                                            color: AppColors.herlanMain,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -130,7 +130,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                   Container(
                                     margin: EdgeInsets.symmetric(vertical: 5),
                                     height: 1,
-                                    color: AppColors.modernGreen,
+                                    color: AppColors.herlanMain,
                                   ),
                                   SizedBox(
                                     height: 10,
