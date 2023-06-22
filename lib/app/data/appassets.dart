@@ -14,4 +14,5 @@ class AppAssets {
   static const String ASSET_SCAN_ANIMATION = 'assets/lottie/scan.json';
   static const String ASSET_GIFT_ANIMATION = 'assets/lottie/giftbox.json';
   static const String ASSET_CHART_ANIMATION = 'assets/lottie/chart.json';
+  static const String ASSET_BEEP_SOUND = 'audio/beep.mp3';
 }

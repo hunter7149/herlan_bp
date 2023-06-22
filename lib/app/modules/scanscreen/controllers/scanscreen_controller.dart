@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:herlan_bp/app/data/appassets.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -15,10 +17,13 @@ class ScanscreenController extends GetxController {
     if (mobileScannerController.value == null) {
       mobileScannerController.value = MobileScannerController(
         detectionSpeed: DetectionSpeed.noDuplicates,
+        detectionTimeoutMs: 2000,
+        torchEnabled: false,
         autoStart: true,
-        returnImage: true,
+        returnImage: false,
       );
-      mobileScannerController.value!.start();
+
+      // mobileScannerController.value!.start();
       update();
       return mobileScannerController.value;
     } else {
@@ -26,10 +31,12 @@ class ScanscreenController extends GetxController {
       update();
       mobileScannerController.value = MobileScannerController(
         detectionSpeed: DetectionSpeed.noDuplicates,
-        autoStart: true,
-        returnImage: true,
+        detectionTimeoutMs: 2000,
+        autoStart: false,
+        torchEnabled: false,
+        returnImage: false,
       );
-      mobileScannerController.value!.start();
+      // mobileScannerController.value!.start();
       update();
       return mobileScannerController.value;
     }
@@ -38,8 +45,19 @@ class ScanscreenController extends GetxController {
   RxBool isValid = true.obs;
 
   RxList<Map<String, dynamic>> scanHistory = <Map<String, dynamic>>[].obs;
+  RxBool isScanned = false.obs;
+  onScan(BarcodeCapture capture) async {
+    await mobileScannerController.value!.stop();
+    AudioPlayer audioPlayer = AudioPlayer();
+    await audioPlayer
+        .setSourceAsset(AppAssets.ASSET_BEEP_SOUND)
+        .then((value) async {
+      await audioPlayer.play(AssetSource(AppAssets.ASSET_BEEP_SOUND));
+    });
 
-  showDialogue(BarcodeCapture capture) {
+    await audioPlayer.onPlayerComplete.first;
+    await audioPlayer.release();
+    await audioPlayer.dispose();
     String code = capture.barcodes[0].rawValue.toString();
     bool codeExists = scanHistory.any((entry) => entry['code'] == code);
 
@@ -53,6 +71,9 @@ class ScanscreenController extends GetxController {
       existingEntry['quantity']++;
     }
     scanHistory.refresh();
+
+    await Future.delayed(Duration(seconds: 2));
+    await mobileScannerController.value!.start();
   }
 
   stopCamera() async {
@@ -61,7 +82,7 @@ class ScanscreenController extends GetxController {
   }
 
   nextPage() async {
-    await stopCamera();
+    // await stopCamera();
     Get.put<ScanscreenController>(ScanscreenController());
     Get.toNamed(Routes.CUSTOMERSCREEN);
     // Get.toNamed(Routes.CUSTOMERSCREEN)?.then((_) {

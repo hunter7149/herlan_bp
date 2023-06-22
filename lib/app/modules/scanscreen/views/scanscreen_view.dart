@@ -56,7 +56,7 @@ class ScanscreenView extends GetView<ScanscreenController> {
                                         .mobileScannerController.value!,
                                     onDetect: (capture) {
                                       print(capture.barcodes);
-                                      controller.showDialogue(capture);
+                                      controller.onScan(capture);
                                     },
                                   );
                                 } else {

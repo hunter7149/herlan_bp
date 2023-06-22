@@ -10,6 +10,8 @@ import '../modules/loginsceen/bindings/loginsceen_binding.dart';
 import '../modules/loginsceen/views/loginsceen_view.dart';
 import '../modules/offerscreen/bindings/offerscreen_binding.dart';
 import '../modules/offerscreen/views/offerscreen_view.dart';
+import '../modules/qrscreen/bindings/qrscreen_binding.dart';
+import '../modules/qrscreen/views/qrscreen_view.dart';
 import '../modules/scanscreen/bindings/scanscreen_binding.dart';
 import '../modules/scanscreen/views/scanscreen_view.dart';
 import '../modules/splashscreen/bindings/splashscreen_binding.dart';
@@ -57,6 +59,11 @@ class AppPages {
       name: _Paths.OFFERSCREEN,
       page: () => const OfferscreenView(),
       binding: OfferscreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.QRSCREEN,
+      page: () => const QrscreenView(),
+      binding: QrscreenBinding(),
     ),
   ];
 }

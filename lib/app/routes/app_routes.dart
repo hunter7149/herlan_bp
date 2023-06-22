@@ -10,6 +10,7 @@ abstract class Routes {
   static const SCANSCREEN = _Paths.SCANSCREEN;
   static const CUSTOMERSCREEN = _Paths.CUSTOMERSCREEN;
   static const OFFERSCREEN = _Paths.OFFERSCREEN;
+  static const QRSCREEN = _Paths.QRSCREEN;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const SCANSCREEN = '/scanscreen';
   static const CUSTOMERSCREEN = '/customerscreen';
   static const OFFERSCREEN = '/offerscreen';
+  static const QRSCREEN = '/qrscreen';
 }

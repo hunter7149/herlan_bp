@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:herlan_bp/app/routes/app_pages.dart';
+
+import '../../scanscreen/controllers/scanscreen_controller.dart';
 
 class CustomerscreenController extends GetxController {
   TextEditingController phonePrefix = TextEditingController(text: '+88');
@@ -21,9 +24,25 @@ class CustomerscreenController extends GetxController {
     }
   }
 
+  nextPage() async {
+    // Get.delete<ScanscreenController>();
+
+    Get.toNamed(Routes.QRSCREEN);
+  }
+
+  resetEverything() {
+    phone.text = '';
+    name.text = '';
+    email.text = '';
+    otherFieldVisibility.value = false;
+    isLogingIn.value = false;
+    update();
+  }
+
   @override
   void onInit() {
     super.onInit();
+    resetEverything();
   }
 
   @override

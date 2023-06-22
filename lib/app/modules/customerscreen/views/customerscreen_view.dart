@@ -25,11 +25,13 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
           elevation: 0,
           leading: ZoomTapAnimation(
             onTap: () async {
-              // Get.put(HomescreenController());
+              // Get.delete<ScanscreenController>();
+              // Get.put(ScanscreenController());
               Get.find<ScanscreenController>()
                   .mobileScannerController
                   .value!
                   .stop();
+              // Get.find<ScanscreenController>().mobileScannerController.close();
               Get.find<ScanscreenController>()
                   .mobileScannerController
                   .value!
@@ -195,7 +197,8 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
                                     )
                                   : ZoomTapAnimation(
                                       onTap: () {
-                                        Get.toNamed(Routes.OFFERSCREEN);
+                                        controller.nextPage();
+                                        // Get.toNamed(Routes.QRSCREEN);
                                       },
                                       child: Container(
                                         height: 60,

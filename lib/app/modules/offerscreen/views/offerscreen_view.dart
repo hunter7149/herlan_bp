@@ -2,6 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:herlan_bp/app/modules/customerscreen/controllers/customerscreen_controller.dart';
+import 'package:herlan_bp/app/modules/qrscreen/controllers/qrscreen_controller.dart';
+import 'package:herlan_bp/app/modules/scanscreen/controllers/scanscreen_controller.dart';
 import 'package:lottie/lottie.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -316,6 +319,10 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                 Expanded(
                                   child: ZoomTapAnimation(
                                     onTap: () {
+                                      Get.delete<CustomerscreenController>();
+                                      Get.delete<ScanscreenController>();
+                                      Get.delete<QrscreenController>();
+                                      // Get.delete<OfferscreenController>();
                                       Get.offNamed(Routes.HOME);
                                     },
                                     child: Container(
