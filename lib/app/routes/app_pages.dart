@@ -36,10 +36,11 @@ class AppPages {
       binding: SplashscreenBinding(),
     ),
     GetPage(
-      name: _Paths.LOGINSCEEN,
-      page: () => const LoginsceenView(),
-      binding: LoginsceenBinding(),
-    ),
+        name: _Paths.LOGINSCEEN,
+        page: () => const LoginsceenView(),
+        binding: LoginsceenBinding(),
+        transitionDuration: Duration(seconds: 2),
+        transition: Transition.circularReveal),
     GetPage(
       name: _Paths.DASHBOARDSCEEN,
       page: () => const DashboardsceenView(),

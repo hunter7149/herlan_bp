@@ -97,31 +97,36 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  height: 200,
-                  decoration: BoxDecoration(
-                      color: AppColors.modernPurple,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                          child: Container(
-                        child: Text(
-                          "DASHBOARD",
-                          style: TextStyle(
-                              color: Colors.grey.shade200, fontSize: 28),
+                ZoomTapAnimation(
+                  onTap: () {
+                    Get.toNamed(Routes.DASHBOARDSCEEN);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 16),
+                    height: 200,
+                    decoration: BoxDecoration(
+                        color: AppColors.modernPurple,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 20,
                         ),
-                      )),
-                      Expanded(
-                          child: Container(
-                        child: Lottie.asset(AppAssets.ASSET_CHART_ANIMATION),
-                      ))
-                    ],
+                        Expanded(
+                            child: Container(
+                          child: Text(
+                            "DASHBOARD",
+                            style: TextStyle(
+                                color: Colors.grey.shade200, fontSize: 28),
+                          ),
+                        )),
+                        Expanded(
+                            child: Container(
+                          child: Lottie.asset(AppAssets.ASSET_CHART_ANIMATION),
+                        ))
+                      ],
+                    ),
                   ),
                 )
               ],

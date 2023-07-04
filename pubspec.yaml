@@ -14,6 +14,7 @@ dependencies:
   package_info_plus: ^4.0.2
   lottie: ^2.3.2
   internet_connection_checker: ^1.0.0+1
+  syncfusion_flutter_charts: ^21.2.10
   # location: ^4.4.0
   geocoding: ^2.0.5
   cached_network_image: ^3.2.3
