@@ -79,8 +79,9 @@ class DashboardsceenView extends GetView<DashboardsceenController> {
                       ),
                       Expanded(
                         child: Container(
+                          // margin: EdgeInsets.symmetric(vertical: 20),
                           padding: EdgeInsets.symmetric(horizontal: 2),
-                          color: Colors.grey.shade300,
+                          color: Colors.grey.shade100,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -88,7 +89,7 @@ class DashboardsceenView extends GetView<DashboardsceenController> {
                               Text(
                                 "80% compeleted",
                                 style: TextStyle(
-                                  color: AppColors.modernGreen,
+                                  color: AppColors.modernBlue,
                                   fontSize: 20,
                                 ),
                                 textAlign: TextAlign.center,
@@ -98,26 +99,18 @@ class DashboardsceenView extends GetView<DashboardsceenController> {
                               ),
                               Container(
                                 height: 40,
-                                width: 40,
-                                child: CircularProgressIndicator(
+                                // width: 40,
+                                child: LinearProgressIndicator(
                                   // minHeight: 30,
 
                                   semanticsLabel: "80%",
                                   value: 0.8,
-                                  color: AppColors.modernGreen,
-                                  backgroundColor: AppColors.modernRed,
+                                  color: AppColors.modernBlue,
+                                  backgroundColor: AppColors.modernCoral,
                                 ),
                               ),
                               SizedBox(
                                 height: 10,
-                              ),
-                              Text(
-                                "20% left",
-                                style: TextStyle(
-                                  color: AppColors.modernSexyRed,
-                                  fontSize: 20,
-                                ),
-                                textAlign: TextAlign.center,
                               ),
                             ],
                           ),

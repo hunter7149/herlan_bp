@@ -17,14 +17,14 @@ class OfferscreenController extends GetxController {
     update();
   }
 
-  requestVerification() async {
-    try {
-      await Repository()
-          .requestVerification(map: {"code": code.value}).then((value) {
-        print("verified");
-      });
-    } on Exception {}
-  }
+  // requestVerification() async {
+  //   try {
+  //     await Repository()
+  //         .requestVerification(map: {"code": code.value}).then((value) {
+  //       print("verified");
+  //     });
+  //   } on Exception {}
+  // }
 
   @override
   void onInit() {

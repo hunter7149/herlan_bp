@@ -39,6 +39,7 @@ abstract class Providers implements CallBack {
 
     ///Adding some value in recieved map
     Map<String, dynamic> finalMap = map;
+    finalMap['id'] = Pref.readData(key: Pref.USER_ID);
     finalMap['version_code'] =
         await PackageInfo.fromPlatform().then((value) => value.buildNumber);
     // finalMap['macAdds'] = "c295f3a8cebb9807";

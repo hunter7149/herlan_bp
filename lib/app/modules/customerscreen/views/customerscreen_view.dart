@@ -27,15 +27,15 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
             onTap: () async {
               // Get.delete<ScanscreenController>();
               // Get.put(ScanscreenController());
-              Get.find<ScanscreenController>()
-                  .mobileScannerController
-                  .value!
-                  .stop();
-              // Get.find<ScanscreenController>().mobileScannerController.close();
-              Get.find<ScanscreenController>()
-                  .mobileScannerController
-                  .value!
-                  .start();
+              // Get.find<ScanscreenController>()
+              //     .mobileScannerController
+              //     .value!
+              //     .stop();
+              // // Get.find<ScanscreenController>().mobileScannerController.close();
+              // Get.find<ScanscreenController>()
+              //     .mobileScannerController
+              //     .value!
+              //     .start();
 
               Get.back();
             },
@@ -81,36 +81,54 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
                               width:
                                   16.0), // Add some spacing between the text fields
                           Expanded(
-                            flex: 4,
-                            child: TextField(
-                              maxLengthEnforcement: MaxLengthEnforcement.none,
-                              controller: controller.phone,
-                              onChanged: (value) {
-                                controller.checkCustomer();
-                              },
-                              maxLength: 11,
-                              keyboardType: TextInputType.phone,
-                              decoration: InputDecoration(
-                                hintText: 'Phone Number',
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: AppColors
-                                            .herlanMain // Set the desired border color
-                                        ),
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: AppColors
-                                          .modernPlantation, // Set the desired border color
+                              flex: 4,
+                              child: Obx(
+                                () => ZoomTapAnimation(
+                                  onLongTap: () {
+                                    // controller.resetEverything();
+                                    // controller.readOnlyUpdater(value: false);
+                                  },
+                                  child: TextField(
+                                    readOnly: controller.isOldCustomer.value,
+                                    maxLengthEnforcement:
+                                        MaxLengthEnforcement.none,
+                                    controller: controller.phone,
+                                    onChanged: (value) {
+                                      controller.checkCustomer();
+                                    },
+                                    maxLength: 11,
+                                    keyboardType: TextInputType.phone,
+                                    decoration: InputDecoration(
+                                      suffixIcon: Container(
+                                          height: 5,
+                                          width: 5,
+                                          child: controller.isLoading.value
+                                              ? SpinKitPulse(
+                                                  color: AppColors.herlanMain)
+                                              : Container()),
+                                      hintText: 'Phone Number',
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: AppColors
+                                                  .herlanMain // Set the desired border color
+                                              ),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              bottomRight:
+                                                  Radius.circular(10))),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                            color: AppColors
+                                                .modernPlantation, // Set the desired border color
+                                          ),
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(10),
+                                              bottomRight:
+                                                  Radius.circular(10))),
                                     ),
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(10),
-                                        bottomRight: Radius.circular(10))),
-                              ),
-                            ),
-                          ),
+                                  ),
+                                ),
+                              )),
                         ],
                       ),
                       SizedBox(
@@ -123,6 +141,7 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
                                 children: [
                                   Expanded(
                                     child: TextField(
+                                      readOnly: controller.isOldCustomer.value,
                                       controller: controller.name,
                                       keyboardType: TextInputType.name,
                                       decoration: InputDecoration(
@@ -158,6 +177,7 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
                                 children: [
                                   Expanded(
                                     child: TextField(
+                                      readOnly: controller.isOldCustomer.value,
                                       controller: controller.email,
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: InputDecoration(
@@ -197,7 +217,7 @@ class CustomerscreenView extends GetView<CustomerscreenController> {
                                     )
                                   : ZoomTapAnimation(
                                       onTap: () {
-                                        controller.nextPage();
+                                        controller.submitCustomer();
                                         // Get.toNamed(Routes.QRSCREEN);
                                       },
                                       child: Container(

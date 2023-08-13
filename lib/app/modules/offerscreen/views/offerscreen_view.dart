@@ -170,7 +170,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Coupon code: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       SizedBox(
@@ -179,7 +179,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "${controller.code.value}",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -190,7 +190,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Status: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       SizedBox(
@@ -199,7 +199,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "VALID",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: AppColors.modernGreen,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -212,14 +212,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Customer name: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
                                           "Khalid Bin Oalid",
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 18,
                                               color: Colors.grey.shade700),
                                         ),
                                       ),
@@ -232,14 +232,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Customer phone: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
                                           "+8801303146132",
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 18,
                                               color: Colors.grey.shade700),
                                         ),
                                       ),
@@ -252,14 +252,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Customer email: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
                                           "emonnatbd@gmail.com",
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 18,
                                               color: Colors.grey.shade700),
                                         ),
                                       ),
@@ -272,14 +272,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Issue date: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
                                           "10-11-2022",
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 18,
                                               color: Colors.grey.shade700),
                                         ),
                                       ),
@@ -292,14 +292,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       Text(
                                         "Expire date: ",
                                         style: TextStyle(
-                                            fontSize: 24,
+                                            fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
                                           "10-11-2022",
                                           style: TextStyle(
-                                              fontSize: 24,
+                                              fontSize: 18,
                                               color: Colors.grey.shade700),
                                         ),
                                       ),

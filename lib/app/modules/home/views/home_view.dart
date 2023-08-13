@@ -40,7 +40,7 @@ class HomeView extends GetView<HomeController> {
               children: [
                 ZoomTapAnimation(
                   onTap: () {
-                    Get.toNamed(Routes.SCANSCREEN);
+                    Get.toNamed(Routes.CUSTOMERSCREEN);
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 16),

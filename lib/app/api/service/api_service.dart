@@ -10,7 +10,7 @@ const BASE_URL =
     // ?
     // 'http://192.168.10.149:8070/HRIS/';
 // :
-    'http://182.160.114.100:7171/HRIS/';
+    'http://182.160.114.100:5001/api/v1';
 
 class ApiService extends GetxService {
   late Dio _dio;
@@ -62,6 +62,8 @@ class ApiService extends GetxService {
       print("response status code -> ${response.statusCode}");
       print("response data-> ${response.data}");
       if (response.statusCode == 200) {
+        return response.data;
+      } else if (response.statusCode == 201) {
         return response.data;
       } else if (response.statusCode == 422) {
         return response.data;

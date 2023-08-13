@@ -113,7 +113,8 @@ class LoginsceenView extends GetView<LoginsceenController> {
                           )
                         : ZoomTapAnimation(
                             onTap: () {
-                              Get.offNamed(Routes.HOME);
+                              controller.requestLogin();
+                              // Get.offNamed(Routes.HOME);
                             },
                             child: Container(
                               height: 60,

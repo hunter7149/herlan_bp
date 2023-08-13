@@ -36,15 +36,15 @@ class LoginsceenController extends GetxController {
 
         try {
           await Repository().requestLogin(map: {
-            "username": email.text,
+            "id": email.text,
             "password": password.text
           }).then((value) async {
             print(value);
-            dynamic data = value["value"] ?? {};
-            if (data != {}) {
-              // Pref.writeData(key: Pref.USER_PROFILE, value: data);
-            }
-            if (value["result"] == "success" && value["accessToken"] != "") {
+            // dynamic data = value["value"] ?? {};
+            // if (data != {}) {
+            //   // Pref.writeData(key: Pref.USER_PROFILE, value: data);
+            // }
+            if (value["status"] == "success" && value["accessToken"] != "") {
               Pref.writeData(
                   key: Pref.LOGIN_INFORMATION, value: value['accessToken']);
               Pref.writeData(key: Pref.USER_ID, value: email.text);
@@ -56,7 +56,7 @@ class LoginsceenController extends GetxController {
             } else {
               isLogingIn.value = false;
               update();
-              Get.snackbar("Failed", "${value['result'] ?? "Try again"}",
+              Get.snackbar("Failed", "${value['error'] ?? "Try again"}",
                   colorText: Colors.white,
                   animationDuration: Duration(seconds: 0),
                   borderRadius: 0,

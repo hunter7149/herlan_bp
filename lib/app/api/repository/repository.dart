@@ -14,7 +14,11 @@ class Repository extends Providers {
 
   Future<dynamic> requestVerification(
           {required Map<String, dynamic> map}) async =>
+      await tokenBaseApi(endPoint: AppUrl.check, method: Method.POST, map: map)
+          .then((value) => value);
+
+  Future<dynamic> createCustomer({required Map<String, dynamic> map}) async =>
       await tokenBaseApi(
-              endPoint: AppUrl.verificationApi, method: Method.POST, map: map)
+              endPoint: AppUrl.createCustomer, method: Method.POST, map: map)
           .then((value) => value);
 }
