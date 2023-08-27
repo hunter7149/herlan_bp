@@ -114,7 +114,7 @@ class CustomerscreenController extends GetxController {
             if (value['status'].toString().contains("yes") &&
                 value['data'] != {}) {
               dynamic data = value['data'];
-              Get.snackbar("Success", "Customer added",
+              Get.snackbar("Success", "New Customer added",
                   backgroundColor: AppColors.modernGreen,
                   colorText: Colors.white,
                   snackPosition: SnackPosition.TOP,

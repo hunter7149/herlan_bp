@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:get/get.dart';
 import 'package:herlan_bp/app/modules/customerscreen/controllers/customerscreen_controller.dart';
@@ -72,7 +73,8 @@ class OfferscreenView extends GetView<OfferscreenController> {
                           left: 0,
                           right: 0,
                           child: SingleChildScrollView(
-                            child: Padding(
+                              child: Obx(
+                            () => Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16),
                               child: Column(
                                 children: [
@@ -100,7 +102,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                                     textAlign:
                                                         TextAlign.center),
                                                 ColorizeAnimatedText(
-                                                    '50% \n Discount',
+                                                    '${controller.offerAmmount.value}',
                                                     textStyle:
                                                         colorizeTextStyle,
                                                     colors: colorizeColors,
@@ -197,9 +199,9 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                         width: 5,
                                       ),
                                       Text(
-                                        "VALID",
+                                        "${controller.codeStatus.value}",
                                         style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 14,
                                             color: AppColors.modernGreen,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -210,14 +212,14 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Customer name: ",
+                                        "Customer name:",
                                         style: TextStyle(
                                             fontSize: 18,
                                             color: Colors.grey.shade700),
                                       ),
                                       Expanded(
                                         child: Text(
-                                          "Khalid Bin Oalid",
+                                          "${controller.userInfo['name']}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.grey.shade700),
@@ -237,7 +239,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          "+8801303146132",
+                                          "${controller.userInfo['phone']}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.grey.shade700),
@@ -257,7 +259,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          "emonnatbd@gmail.com",
+                                          "${controller.userInfo['email']}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.grey.shade700),
@@ -277,7 +279,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          "10-11-2022",
+                                          "${controller.issueDate.value.isEmpty ? "N/A" : controller.issueDate.value}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.grey.shade700),
@@ -297,7 +299,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                       ),
                                       Expanded(
                                         child: Text(
-                                          "10-11-2022",
+                                          "${controller.expiryDate.value.isEmpty ? "N/A" : controller.expiryDate.value}",
                                           style: TextStyle(
                                               fontSize: 18,
                                               color: Colors.grey.shade700),
@@ -308,7 +310,7 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                 ],
                               ),
                             ),
-                          ),
+                          )),
                         ),
                         Positioned(
                             bottom: 0,
@@ -319,25 +321,26 @@ class OfferscreenView extends GetView<OfferscreenController> {
                                 Expanded(
                                   child: ZoomTapAnimation(
                                     onTap: () {
-                                      Get.delete<CustomerscreenController>();
-                                      Get.delete<ScanscreenController>();
-                                      Get.delete<QrscreenController>();
-                                      // Get.delete<OfferscreenController>();
-                                      Get.offNamed(Routes.HOME);
+                                      controller.updateCode();
                                     },
-                                    child: Container(
-                                      color: AppColors.herlanMain,
-                                      height: 60,
-                                      child: Center(
-                                        child: Text(
-                                          "DONE",
-                                          style: TextStyle(
-                                              fontSize: 28,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                      ),
-                                    ),
+                                    child: controller.isUpdating.value
+                                        ? SpinKitThreeInOut(
+                                            color: AppColors.herlanMain,
+                                          )
+                                        : Container(
+                                            color: AppColors.herlanMain,
+                                            height: 60,
+                                            child: Center(
+                                              child: Text(
+                                                "DONE",
+                                                style: TextStyle(
+                                                    fontSize: 28,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                          ),
                                   ),
                                 ),
                                 // Expanded(

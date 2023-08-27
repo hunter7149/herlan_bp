@@ -5,6 +5,15 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 import '../../../routes/app_pages.dart';
 
 class QrscreenController extends GetxController {
+  RxMap<String, dynamic> userInfo = <String, dynamic>{}.obs;
+  userInfoUpdater({required dynamic data}) {
+    userInfo.clear();
+    userInfo.value = data;
+    userInfo.refresh();
+    print(userInfo.value);
+    update();
+  }
+
   Rx<MobileScannerController?> mobileScannerController =
       Rx<MobileScannerController?>(null);
 
@@ -132,12 +141,16 @@ class QrscreenController extends GetxController {
         thirdSection.text.length == 4 &&
         fourthSection.text.length == 4) {
       final code =
-          "${firstSection.text}-${secondSection.text}-${thirdSection.text}-${fourthSection.text}";
+          "${firstSection.text}${secondSection.text}${thirdSection.text}${fourthSection.text}"
+              .toUpperCase();
 
       // Get.delete<HomescreenController>();
       await Get.toNamed(Routes.OFFERSCREEN,
           arguments: {
             "code": code,
+            "name": userInfo['name'] ?? "",
+            "phone": userInfo['phone'] ?? "",
+            "email": userInfo['email'] ?? ""
           },
           preventDuplicates: true);
       // Get.delete<HomescreenController>();
@@ -154,6 +167,9 @@ class QrscreenController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    dynamic data = Get.arguments;
+    userInfoUpdater(data: data);
+
     // initializeScannerController();
   }
 

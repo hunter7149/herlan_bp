@@ -21,4 +21,13 @@ class Repository extends Providers {
       await tokenBaseApi(
               endPoint: AppUrl.createCustomer, method: Method.POST, map: map)
           .then((value) => value);
+
+  Future<dynamic> verifyVoucher({required Map<String, dynamic> map}) async =>
+      await tokenBaseApi(
+              endPoint: AppUrl.verifyVoucher, method: Method.POST, map: map)
+          .then((value) => value);
+  Future<dynamic> updateVoucher({required Map<String, dynamic> map}) async =>
+      await tokenBaseApi(
+              endPoint: AppUrl.updateVoucher, method: Method.POST, map: map)
+          .then((value) => value);
 }
